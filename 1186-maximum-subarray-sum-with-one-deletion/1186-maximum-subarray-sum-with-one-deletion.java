@@ -1,0 +1,25 @@
+class Solution {
+    public int maximumSum(int[] arr) {
+        int noDel = arr[0];
+        int oneDel = Integer.MIN_VALUE;
+        int ans = arr[0];
+
+        for (int i = 1; i < arr.length; i++) {
+            int prevNoDel = noDel;
+            int prevonedel = oneDel;
+            noDel = Math.max(arr[i], noDel + arr[i]);
+            int v2=0;
+            if(prevonedel==Integer.MIN_VALUE){
+                v2=arr[i];
+            }
+            else{
+                v2=prevonedel+arr[i];
+            }
+            oneDel = Math.max(prevNoDel, v2);
+
+            ans = Math.max(ans, Math.max(noDel, oneDel));
+        }
+
+        return ans;
+    }
+}
